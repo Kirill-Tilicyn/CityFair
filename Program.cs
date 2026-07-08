@@ -35,7 +35,53 @@ namespace CityFair
                 string userNumberText = Console.ReadLine().Trim();
                 bool isUserNumberValid = int.TryParse(userNumberText, out int userNumber);
 
+                Console.WriteLine();
+
+                if (isUserNumberValid)
+                {
+                    switch (userNumber)
+                    {
+                        case (int)MenuAction.AddFair:
+                            //FairManager.AddFair();
+                            break;
+
+                        case (int)MenuAction.AddSeller:
+                            //SellerManager.AddSeller();
+                            break;
+
+                        case (int)MenuAction.RegisterSeller:
+                            //FairManager.RegisterSellerToFair();
+                            break;
+
+                        case (int)MenuAction.RemoveSeller:
+                            //FairManager.RemoveSellerFromFair();
+                            break;
+
+                        case (int)MenuAction.ShowFairs:
+                            //FairManager.ShowFairs();
+                            break;
+
+                        case (int)MenuAction.ShowSellers:
+                            //SellerManager.ShowSellers();
+                            break;
+
+                        case (int)MenuAction.ShowAll:
+                            //FairManager.ShowAllFairsAndSellers();
+                            break;
+
+                        case (int)MenuAction.Exit:
+                            isProgramWorking = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("Некорректный выбор. Пожалуйста, выберите действие из списка.");
+                            break;
+                    }
+                }
             }
+
+            Console.WriteLine("Завершение работы приложения...");
+            Console.ReadKey();
         }
     }
 }
