@@ -22,8 +22,8 @@ namespace CityFair
         {
             bool isProgramWorking = true;
 
-            List<string> fairs = new List<string>();
-            List<string> sellers = new List<string>();
+            List<Fair> fairs = new List<Fair>();
+            List<Seller> sellers = new List<Seller>();
 
             while (isProgramWorking)
             {
@@ -53,6 +53,8 @@ namespace CityFair
 
                         if (isNameFairValid)
                         {
+                            fairs.Add(new Fair(nameFair));
+
                             Console.WriteLine("Ярмарка создана!");
                         }
                         else
@@ -66,6 +68,8 @@ namespace CityFair
 
                         if (isNameSellerValid)
                         {
+                            sellers.Add(new Seller(nameSeller));
+
                             Console.WriteLine("Продавец создан!");
                         }
                         else
