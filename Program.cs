@@ -23,14 +23,14 @@ namespace CityFair
             while (isProgramWorking)
             {
                 Console.WriteLine("Выберите действие:");
-                Console.WriteLine($" - Добавить новую ярмарку");
-                Console.WriteLine($"2 - Добавить нового продавца");
-                Console.WriteLine($"3 - Зарегистрировать продавца на ярмарку");
-                Console.WriteLine($"4 - Снять продавца с ярмарки");
-                Console.WriteLine($"5 - Просмотреть список доступных ярмарок");
-                Console.WriteLine($"6 - Просмотреть список продавцов");
-                Console.WriteLine($"7 - Просмотреть все ярмарки и зарегистрированных продавцов");
-                Console.WriteLine($"8 - Завершить работу приложения");
+                Console.WriteLine($"{(int)MenuAction.AddFair} - Добавить новую ярмарку");
+                Console.WriteLine($"{(int)MenuAction.AddSeller} - Добавить нового продавца");
+                Console.WriteLine($"{(int)MenuAction.RegisterSeller} - Зарегистрировать продавца на ярмарку");
+                Console.WriteLine($"{(int)MenuAction.RemoveSeller} - Снять продавца с ярмарки");
+                Console.WriteLine($"{(int)MenuAction.ShowFairs} - Просмотреть список доступных ярмарок");
+                Console.WriteLine($"{(int)MenuAction.ShowSellers} - Просмотреть список продавцов");
+                Console.WriteLine($"{(int)MenuAction.ShowAll} - Просмотреть все ярмарки и зарегистрированных продавцов");
+                Console.WriteLine($"{(int)MenuAction.Exit} - Завершить работу приложения");
                 Console.Write("Выберите вариант действия: ");
                 string userNumberText = Console.ReadLine().Trim();
                 bool isUserNumberValid = int.TryParse(userNumberText, out int userNumber);
