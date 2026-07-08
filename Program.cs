@@ -38,13 +38,14 @@ namespace CityFair
 
                 Console.WriteLine();
 
+                string nameSeller = "";
+                string nameFair = "";
+
                 if (isUserNumberValid)
                 {
                     if (userNumber == (int)MenuAction.AddFair)
                     {
-                        string nameFair = "";
-
-                        bool isNameFairValid = RequestNameSeller(ref nameFair);
+                        bool isNameFairValid = RequestNameFair(ref nameFair);
 
                         if (isNameFairValid)
                         {
@@ -52,13 +53,11 @@ namespace CityFair
                         }
                         else
                         {
-                            Console.WriteLine("Вы ввели некоректные данные! Ярмарка не создана!");
+                            Console.WriteLine("Вы ввели некорректные данные! Ярмарка не создана!");
                         }
                     }
                     else if (userNumber == (int)MenuAction.AddSeller)
                     {
-                        string nameSeller = "";
-
                         bool isNameSellerValid = RequestNameSeller(ref nameSeller);
 
                         if (isNameSellerValid)
@@ -67,16 +66,36 @@ namespace CityFair
                         }
                         else
                         {
-                            Console.WriteLine("Вы ввели некоректные данные! Продавец не создан!");
+                            Console.WriteLine("Вы ввели некорректные данные! Продавец не создан!");
                         }
                     }
                     else if (userNumber == (int)MenuAction.RegisterSeller)
                     {
+                        bool isNameSellerValid = RequestNameSeller(ref nameSeller);
+                        bool isNameFairValid = RequestNameFair(ref nameFair);
+                        
+                        if (isNameSellerValid && isNameFairValid)
+                        {
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели некорректные данные! Действие невозможно!");
+                        }
                     }
                     else if (userNumber == (int)MenuAction.RemoveSeller)
                     {
+                        bool isNameSellerValid = RequestNameSeller(ref nameSeller);
+                        bool isNameFairValid = RequestNameFair(ref nameFair);
+                        
+                        if (isNameSellerValid && isNameFairValid)
+                        {
 
+                        }
+                        else
+                        {
+                            Console.WriteLine("Вы ввели некорректные данные! Действие невозможно!");
+                        }
                     }
                     else if (userNumber == (int)MenuAction.ShowFairs)
                     {
