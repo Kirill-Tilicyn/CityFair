@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.Pipes;
 
 namespace CityFair
@@ -20,6 +21,9 @@ namespace CityFair
         public static void Main(string[] args)
         {
             bool isProgramWorking = true;
+
+            List<string> fairs = new List<string>();
+            List<string> sellers = new List<string>();
 
             while (isProgramWorking)
             {
