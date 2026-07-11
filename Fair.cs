@@ -61,7 +61,7 @@ namespace CityFair
             }
 
             bool hasSellerAdded = activePointSale.AddSeller(registeringSeller);
-            return true;
+            return hasSellerAdded;
         }
     }
 }
