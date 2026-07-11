@@ -67,7 +67,7 @@ namespace CityFair
                             break;
 
                         case (int)MenuAction.RegisterSeller:
-
+                            RegisterSeller(fairs, sellers);
                             break;
 
                         case (int)MenuAction.RemoveSeller:
@@ -131,7 +131,7 @@ namespace CityFair
         }
 
         public static void ShowFair(List<Fair> fairs)
-        { 
+        {
             Console.WriteLine("Действующие ярмарки: ");
 
             foreach (Fair fair in fairs)
@@ -223,9 +223,79 @@ namespace CityFair
             }
         }
 
-        public static void AddSeller(List<Fair> fairs, List<Seller> sellers)
+        public static void RegisterSeller(List<Fair> fairs, List<Seller> sellers)
         {
+            string fairName = RequestNameFair();
 
+            Fair activeFair = null;
+
+            foreach (Fair fair in fairs)
+            {
+                if (fair == activeFair)
+                {
+                    activeFair = fair;
+                    return;
+                }
+            }
+
+            if (activeFair != null)
+            {
+                string namePointSale = RequestNamePointSale();
+
+                PointSale activePoint = null;
+
+                if (namePointSale != null)
+                {
+                    foreach (PointSale pointSale in activeFair.GetPoints())
+                    {
+                        if (pointSale.GetName() == namePointSale)
+                        {
+                            activePoint = pointSale;
+                            break;
+                        }
+                    }
+                    
+                    if (activePoint != null)
+                    {
+                        string nameSeller = RequestNameSaller();
+
+                        Seller activeSeller = null;
+
+                        if (nameSeller != null)
+                        {
+                            foreach (Seller seller in sellers)
+                            {
+                                if (seller.GetName() == nameSeller)
+                                {
+                                    activeSeller = seller;
+                                }
+                            }
+
+                            if (activeSeller != null)
+                            {
+                                bool hasActionCompleted = activePoint.AddSeller(activeSeller);
+
+                                if (hasActionCompleted)
+                                {
+                                    Console.WriteLine("Действие выполнено!");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Такого продавца не существует. Действие отменено!");
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Такой торговой точки нет! Действие отменено!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Такой ярмарки нет! Действие отменено!");
+            }
         }
 
         public static string RequestNameFair()
@@ -244,7 +314,7 @@ namespace CityFair
             return name;
         }
 
-        public static string RequestNameSale()
+        public static string RequestNameSaller()
         {
             Console.Write("Введите название ярмарки: ");
             string name = Console.ReadLine()?.Trim();
