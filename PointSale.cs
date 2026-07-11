@@ -34,6 +34,11 @@ namespace CityFair
 
         public bool AddSeller(Seller seller)
         {
+            if (seller == null)
+            {
+                return false;
+            }
+
             _sellers.Add(seller);
             return true;
         }

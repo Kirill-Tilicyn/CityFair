@@ -38,9 +38,9 @@ namespace CityFair
             return true;
         }
 
-        public bool AddSellerToPointSale(string nameSeller, string namePointSale)
+        public bool AddSellerToPointSale(Seller registeringSeller, string namePointSale)
         {
-            if (string.IsNullOrEmpty(nameSeller))
+            if (registeringSeller == null)
             {
                 return false;
             }
@@ -62,13 +62,13 @@ namespace CityFair
 
             foreach (Seller seller in activePointSale.GetSellers())
             {
-                if (seller.GetName() == nameSeller)
+                if (seller == registeringSeller)
                 {
                     return false;
                 }
             }
 
-            activePointSale.AddSeller(nameSeller);
+            activePointSale.AddSeller(registeringSeller);
             return true;
         }
     }
