@@ -6,7 +6,7 @@ namespace CityFair
     internal class PointSale
     {
         private string _name;
-        private List<Seller> _sellers;
+        private Seller _seller;
 
         public PointSale(string name)
         {
@@ -19,7 +19,7 @@ namespace CityFair
                 _name = name;
             }
 
-            _sellers = new List<Seller>();
+            _seller = null;
         }
 
         public string GetName()
@@ -27,9 +27,14 @@ namespace CityFair
             return _name;
         }
 
-        public List<Seller> GetSellers()
+        public string GetSellers()
         {
-            return _sellers;
+            if (_seller == null)
+            {
+                return "За данной торговой точкой не закреплен продавец!";
+            }
+
+            return _seller.GetName();
         }
 
         public bool AddSeller(Seller registeringSeller)
@@ -39,33 +44,23 @@ namespace CityFair
                 return false;
             }
 
-            foreach (Seller seller in _sellers)
+            if (_seller != null)
             {
-                if (seller == registeringSeller)
-                {
-                    return false;
-                }
+                return false;
             }
 
-            _sellers.Add(registeringSeller);
+            _seller = registeringSeller;
             return true;
         }
 
-        public bool DeleteSeller(Seller seller)
+        public bool DeleteSeller()
         {
-            if (seller == null)
+            if (_seller == null)
             {
                 return false;
             }
 
-            if (!_sellers.Contains(seller))
-            {
-                return false;
-            }
-
-            int sellerNumber = _sellers.IndexOf(seller);
-
-            _sellers.RemoveAt(sellerNumber);
+            _seller = null;
             return true;
         }
     }
