@@ -22,7 +22,7 @@ namespace CityFair
             _points = new List<PointSale>();
         }
 
-        public string GetFair()
+        public string GetName()
         {
             return _name;
         }
@@ -36,6 +36,22 @@ namespace CityFair
 
             _points.Add(new PointSale(namePointSale));
             return true;
+        }
+
+        public bool AddSellerToPointSale(string nameSeller, string namePointSale)
+        {
+            if (string.IsNullOrEmpty(nameSeller))
+            {
+                return false;
+            }
+
+            foreach (PointSale pointSale in _points)
+            {
+                if (pointSale.GetNamePointSale == namePointSale)
+                {
+                    pointSale.Add
+                }
+            }
         }
     }
 }

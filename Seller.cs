@@ -17,5 +17,10 @@ namespace CityFair
                 _name = name;
             }
         }
+
+        public string GetName()
+        {
+            return _name;
+        }
     }
 }
