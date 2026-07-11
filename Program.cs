@@ -8,14 +8,15 @@ namespace CityFair
     {
         private enum MenuAction
         {
-            AddFair = 1,
-            AddSeller = 2,
-            RegisterSeller = 3,
-            RemoveSeller = 4,
-            ShowFairs = 5,
-            ShowSellers = 6,
-            ShowAll = 7,
-            Exit = 8
+            ShowFairs = 1,
+            ShowPoints = 2,
+            AddPoint = 3,
+            ShowSellers = 4,
+            AddSeller = 5,
+            RegisterSeller = 6,
+            RemoveSeller = 7,
+            ShowAll = 8,
+            Exit = 9
         }
 
         public static void Main(string[] args)
@@ -34,17 +35,8 @@ namespace CityFair
 
             while (isProgramWorking)
             {
-                Console.WriteLine("Выберите действие:");
-                Console.WriteLine($"Просмотр списка ярмарк");
-                Console.WriteLine($"Просмотр списка продавцов");
-                Console.WriteLine($"{(int)MenuAction.AddSeller} - Добавить нового продавца");
-                Console.WriteLine($"{(int)MenuAction.RegisterSeller} - Зарегистрировать продавца на ярмарку");
-                Console.WriteLine($"{(int)MenuAction.RemoveSeller} - Снять продавца с ярмарки");
-                Console.WriteLine($"{(int)MenuAction.ShowFairs} - Просмотреть список доступных ярмарок");
-                Console.WriteLine($"{(int)MenuAction.ShowSellers} - Просмотреть список продавцов");
-                Console.WriteLine($"{(int)MenuAction.ShowAll} - Просмотреть все ярмарки и зарегистрированных продавцов");
-                Console.WriteLine($"{(int)MenuAction.Exit} - Завершить работу приложения");
-                Console.Write("Выберите вариант действия: ");
+                ShowMenu();
+
                 string userNumberText = Console.ReadLine().Trim();
                 bool isUserNumberValid = int.TryParse(userNumberText, out int userNumber);
 
@@ -137,6 +129,39 @@ namespace CityFair
 
             Console.WriteLine("Завершение работы приложения...");
             Console.ReadKey();
+        }
+
+        public static void ShowMenu()
+        {
+            Console.WriteLine();
+            Console.WriteLine("=== МЕНЮ ===");
+            Console.WriteLine();
+
+            Console.WriteLine("--- Ярмарки ---");
+            Console.WriteLine($"{(int)MenuAction.ShowFairs}. Просмотреть список ярмарок");
+            Console.WriteLine();
+
+            Console.WriteLine("--- Торговые точки ---");
+            Console.WriteLine($"{(int)MenuAction.ShowPoints}. Просмотреть торговые точки ярмарки");
+            Console.WriteLine($"{(int)MenuAction.AddPoint}. Добавить торговую точку в ярмарку");
+            Console.WriteLine();
+
+            Console.WriteLine("--- Продавцы ---");
+            Console.WriteLine($"{(int)MenuAction.ShowSellers}. Просмотреть список продавцов");
+            Console.WriteLine($"{(int)MenuAction.AddSeller}. Добавить нового продавца");
+            Console.WriteLine();
+
+            Console.WriteLine("--- Регистрация ---");
+            Console.WriteLine($"{(int)MenuAction.RegisterSeller}. Зарегистрировать продавца на торговую точку");
+            Console.WriteLine($"{(int)MenuAction.RemoveSeller}. Снять продавца с торговой точки");
+            Console.WriteLine();
+
+            Console.WriteLine("--- Информация ---");
+            Console.WriteLine($"{(int)MenuAction.ShowAll}. Показать все ярмарки, точки и продавцов");
+            Console.WriteLine($"{(int)MenuAction.Exit}. Завершить работу приложения");
+            Console.WriteLine();
+
+            Console.Write("Выберите действие: ");
         }
 
         public static bool RequestNameFair(ref string nameFair)
