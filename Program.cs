@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO.Pipes;
+using System.Security.Cryptography;
 
 namespace CityFair
 {
@@ -75,7 +76,7 @@ namespace CityFair
                             break;
 
                         case (int)MenuAction.ShowAll:
-
+                            ShowAll(fairs);
                             break;
 
                         case (int)MenuAction.Exit:
@@ -225,7 +226,7 @@ namespace CityFair
 
         public static void AddSeller(List<Seller> sellers)
         {
-            string nameSeller = RequestNameSaller();
+            string nameSeller = RequestNameSeller();
 
             if (string.IsNullOrEmpty(nameSeller))
             {
@@ -273,7 +274,7 @@ namespace CityFair
 
                     if (activePoint != null)
                     {
-                        string nameSeller = RequestNameSaller();
+                        string nameSeller = RequestNameSeller();
 
                         Seller activeSeller = null;
 
@@ -368,6 +369,28 @@ namespace CityFair
             else
             {
                 Console.WriteLine("Такой ярмарки нет! Действие отменено!");
+            }
+        }
+
+        public static void ShowAll(List<Fair> fairs)
+        {
+            foreach (Fair fair in fairs)
+            {
+                Console.WriteLine($"--- {fair.GetName()} ---");
+
+                if (fair.GetPoints().Count > 0)
+                {
+                    foreach (PointSale pointSale in fair.GetPoints())
+                    {
+                        Console.WriteLine($"Торговая точка: {pointSale.GetName()}");
+
+                        pointSale.GetSeller()
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Нет зарегистрированных торговых точек!");
+                }
             }
         }
 

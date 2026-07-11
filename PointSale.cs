@@ -34,7 +34,7 @@ namespace CityFair
                 return "За данной торговой точкой не закреплен продавец!";
             }
 
-            return _seller.GetName();
+            return $"Продавец: {_seller.GetName()}";
         }
 
         public bool AddSeller(Seller registeringSeller)
