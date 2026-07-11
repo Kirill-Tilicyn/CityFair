@@ -27,6 +27,11 @@ namespace CityFair
             return _name;
         }
 
+        public List<PointSale> GetPoints()
+        {
+            return _points;
+        }
+
         public bool AddPointSale(string namePointSale)
         {
             if (string.IsNullOrEmpty(namePointSale))

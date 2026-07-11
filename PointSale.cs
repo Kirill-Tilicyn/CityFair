@@ -27,7 +27,7 @@ namespace CityFair
             return _name;
         }
 
-        public string GetSellers()
+        public string GetSeller()
         {
             if (_seller == null)
             {
