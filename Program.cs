@@ -42,7 +42,58 @@ namespace CityFair
 
                 Console.WriteLine();
 
+                if (isUserNumberValid)
+                {
+                    switch (userNumber)
+                    {
+                        case (int)MenuAction.ShowFairs:
+
+                            break;
+
+                        case (int)MenuAction.ShowPoints:
+
+                            break;
+                        case (int)MenuAction.AddPoint:
+
+                            break;
+
+                        case (int)MenuAction.ShowSellers:
+
+                            break;
+
+                        case (int)MenuAction.AddSeller:
+
+                            break;
+
+                        case (int)MenuAction.RegisterSeller:
+
+                            break;
+
+                        case (int)MenuAction.RemoveSeller:
+
+                            break;
+
+                        case (int)MenuAction.ShowAll:
+
+                            break;
+
+                        case (int)MenuAction.Exit:
+                            isProgramWorking = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("Действия под таким номером нет!");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Номер вашего действия не распознан! Попробуйте еще раз!");
+                }
             }
+
+            Console.WriteLine("Спасибо за использование программы!");
+            Console.ReadKey();
         }
 
         public static void ShowMenu()
@@ -76,31 +127,6 @@ namespace CityFair
             Console.WriteLine();
 
             Console.Write("Выберите действие: ");
-        }
-
-        public static bool RequestNameFair(ref string nameFair)
-        {
-            Console.Write("Введите название ярмарки: ");
-            nameFair = Console.ReadLine()?.Trim();
-
-            if (string.IsNullOrEmpty(nameFair))
-            {
-                return false;
-            }
-            return true;
-        }
-
-        public static bool RequestNameSeller(ref string nameSeller)
-        {
-            Console.Write("Введите имя продавца: ");
-            nameSeller = Console.ReadLine()?.Trim();
-
-            if (string.IsNullOrEmpty(nameSeller))
-            {
-                return false;
-            }
-
-            return true;
         }
     }
 }
