@@ -60,15 +60,7 @@ namespace CityFair
                 return false;
             }
 
-            foreach (Seller seller in activePointSale.GetSellers())
-            {
-                if (seller == registeringSeller)
-                {
-                    return false;
-                }
-            }
-
-            activePointSale.AddSeller(registeringSeller);
+            bool hasSellerAdded = activePointSale.AddSeller(registeringSeller);
             return true;
         }
     }

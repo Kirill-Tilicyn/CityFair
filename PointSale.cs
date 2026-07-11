@@ -32,14 +32,22 @@ namespace CityFair
             return _sellers;
         }
 
-        public bool AddSeller(Seller seller)
+        public bool AddSeller(Seller registeringSeller)
         {
-            if (seller == null)
+            if (registeringSeller == null)
             {
                 return false;
             }
 
-            _sellers.Add(seller);
+            foreach (Seller seller in _sellers)
+            {
+                if (seller == registeringSeller)
+                {
+                    return false;
+                }
+            }
+
+            _sellers.Add(registeringSeller);
             return true;
         }
     }
