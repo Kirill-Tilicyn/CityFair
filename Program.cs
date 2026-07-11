@@ -387,7 +387,7 @@ namespace CityFair
             return name;
         }
 
-        public static string RequestNameSaller()
+        public static string RequestNameSeller()
         {
             Console.Write("Введите название ярмарки: ");
             string name = Console.ReadLine()?.Trim();
