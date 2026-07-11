@@ -223,6 +223,22 @@ namespace CityFair
             }
         }
 
+        public static void AddSeller(List<Seller> sellers)
+        {
+            string nameSeller = RequestNameSaller();
+
+            if (string.IsNullOrEmpty(nameSeller))
+            {
+                sellers.Add(new Seller(nameSeller));
+
+                Console.WriteLine("Действие выполнено!");
+            }
+            else
+            {
+                Console.WriteLine("Вы ввели некорректные значения! Действие отменено!");
+            }
+        }
+
         public static void RegisterSeller(List<Fair> fairs, List<Seller> sellers)
         {
             string fairName = RequestNameFair();
@@ -244,7 +260,7 @@ namespace CityFair
 
                 PointSale activePoint = null;
 
-                if (namePointSale != null)
+                if (string.IsNullOrEmpty(namePointSale))
                 {
                     foreach (PointSale pointSale in activeFair.GetPoints())
                     {
@@ -254,14 +270,14 @@ namespace CityFair
                             break;
                         }
                     }
-                    
+
                     if (activePoint != null)
                     {
                         string nameSeller = RequestNameSaller();
 
                         Seller activeSeller = null;
 
-                        if (nameSeller != null)
+                        if (string.IsNullOrEmpty(nameSeller))
                         {
                             foreach (Seller seller in sellers)
                             {
