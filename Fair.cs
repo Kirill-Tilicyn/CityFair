@@ -45,13 +45,31 @@ namespace CityFair
                 return false;
             }
 
+            PointSale activePointSale = null;
+
             foreach (PointSale pointSale in _points)
             {
-                if (pointSale.GetNamePointSale == namePointSale)
+                if (pointSale.GetName() == namePointSale)
                 {
-                    pointSale.Add
+                    activePointSale = pointSale;
                 }
             }
+
+            if (activePointSale == null)
+            {
+                return false;
+            }
+
+            foreach (Seller seller in activePointSale.GetSellers())
+            {
+                if (seller.GetName() == nameSeller)
+                {
+                    return false;
+                }
+            }
+
+            activePointSale.AddSeller(nameSeller);
+            return true;
         }
     }
 }
