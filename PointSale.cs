@@ -50,5 +50,23 @@ namespace CityFair
             _sellers.Add(registeringSeller);
             return true;
         }
+
+        public bool DeleteSeller(Seller seller)
+        {
+            if (seller == null)
+            {
+                return false;
+            }
+
+            if (!_sellers.Contains(seller))
+            {
+                return false;
+            }
+
+            int sellerNumber = _sellers.IndexOf(seller);
+
+            _sellers.RemoveAt(sellerNumber);
+            return true;
+        }
     }
 }
