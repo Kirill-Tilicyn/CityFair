@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CityFair
 {
-    internal class PointSale
+    public class PointSale
     {
         private string _name;
         private Seller _seller;
