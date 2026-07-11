@@ -47,18 +47,19 @@ namespace CityFair
                     switch (userNumber)
                     {
                         case (int)MenuAction.ShowFairs:
-
+                            ShowFair(fairs);
                             break;
 
                         case (int)MenuAction.ShowPoints:
-
+                            ShowPoints(fairs);
                             break;
-                        case (int)MenuAction.AddPoint:
 
+                        case (int)MenuAction.AddPoint:
+                            AddPoint(fairs);
                             break;
 
                         case (int)MenuAction.ShowSellers:
-
+                            ShowSellers(sellers);
                             break;
 
                         case (int)MenuAction.AddSeller:
@@ -127,6 +128,128 @@ namespace CityFair
             Console.WriteLine();
 
             Console.Write("Выберите действие: ");
+        }
+
+        public static void ShowFair(List<Fair> fairs)
+        { 
+            Console.WriteLine("Действующие ярмарки: ");
+
+            foreach (Fair fair in fairs)
+            {
+                Console.WriteLine(fair.GetName());
+            }
+        }
+
+        public static void ShowPoints(List<Fair> fairs)
+        {
+            string fairName = RequestNameFair();
+
+            Fair activeFair = null;
+
+            foreach (Fair fair in fairs)
+            {
+                if (fair == activeFair)
+                {
+                    activeFair = fair;
+                    return;
+                }
+            }
+
+            if (activeFair != null)
+            {
+                Console.WriteLine($"Список торговых точек на ярмарке - {activeFair.GetName()}");
+
+                foreach (PointSale point in activeFair.GetPoints())
+                {
+                    Console.WriteLine(point.GetName());
+                }
+            }
+            else
+            {
+                Console.WriteLine("Такой ярмарки нет, невозможно выполнить действие!");
+            }
+        }
+
+        public static void AddPoint(List<Fair> fairs)
+        {
+            string fairName = RequestNameFair();
+
+            Fair activeFair = null;
+
+            foreach (Fair fair in fairs)
+            {
+                if (fair == activeFair)
+                {
+                    activeFair = fair;
+                    return;
+                }
+            }
+
+            if (activeFair != null)
+            {
+                string namePointSale = RequestNamePointSale();
+
+                bool hasActionCompleted = activeFair.AddPointSale(namePointSale);
+
+                if (hasActionCompleted)
+                {
+                    Console.WriteLine("Торговая точка создана!");
+                }
+                else
+                {
+                    Console.WriteLine("Подобное название торговой точки недоступно!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Такой ярмарки нет! Действие отменено!");
+            }
+        }
+
+        public static void ShowSellers(List<Seller> sellers)
+        {
+            if (sellers.Count > 0)
+            {
+                Console.WriteLine("Список продавцов: ");
+
+                foreach (Seller seller in sellers)
+                {
+                    Console.WriteLine(seller.GetName());
+                }
+            }
+            else
+            {
+                Console.WriteLine("Нет доступных продавцов!");
+            }
+        }
+
+        public static void AddSeller(List<Fair> fairs, List<Seller> sellers)
+        {
+
+        }
+
+        public static string RequestNameFair()
+        {
+            Console.Write("Введите название ярмарки: ");
+            string name = Console.ReadLine()?.Trim();
+
+            return name;
+        }
+
+        public static string RequestNamePointSale()
+        {
+            Console.Write("Введите название ярмарки: ");
+            string name = Console.ReadLine()?.Trim();
+
+            return name;
+        }
+
+        public static string RequestNameSale()
+        {
+            Console.Write("Введите название ярмарки: ");
+            string name = Console.ReadLine()?.Trim();
+
+            return name;
         }
     }
 }
