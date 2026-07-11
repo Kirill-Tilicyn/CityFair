@@ -63,7 +63,7 @@ namespace CityFair
                             break;
 
                         case (int)MenuAction.AddSeller:
-
+                            AddSeller(sellers);
                             break;
 
                         case (int)MenuAction.RegisterSeller:
@@ -71,7 +71,7 @@ namespace CityFair
                             break;
 
                         case (int)MenuAction.RemoveSeller:
-
+                            RemoveSeller(fairs);
                             break;
 
                         case (int)MenuAction.ShowAll:
@@ -300,6 +300,63 @@ namespace CityFair
                                     Console.WriteLine("Такого продавца не существует. Действие отменено!");
                                 }
                             }
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Такой торговой точки нет! Действие отменено!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Такой ярмарки нет! Действие отменено!");
+            }
+        }
+
+        public static void RemoveSeller(List<Fair> fairs)
+        {
+            string fairName = RequestNameFair();
+
+            Fair activeFair = null;
+
+            foreach (Fair fair in fairs)
+            {
+                if (fair == activeFair)
+                {
+                    activeFair = fair;
+                    return;
+                }
+            }
+
+            if (activeFair != null)
+            {
+                string namePointSale = RequestNamePointSale();
+
+                PointSale activePoint = null;
+
+                if (string.IsNullOrEmpty(namePointSale))
+                {
+                    foreach (PointSale pointSale in activeFair.GetPoints())
+                    {
+                        if (pointSale.GetName() == namePointSale)
+                        {
+                            activePoint = pointSale;
+                            break;
+                        }
+                    }
+
+                    if (activePoint != null)
+                    {
+                        bool hasActionCompleted = activePoint.DeleteSeller();
+
+                        if (hasActionCompleted)
+                        {
+                            Console.WriteLine("Действие выполнено!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("На данной точке нет зарегистрированных продавцов!");
                         }
                     }
                 }
