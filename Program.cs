@@ -22,13 +22,21 @@ namespace CityFair
         {
             bool isProgramWorking = true;
 
-            List<Fair> fairs = new List<Fair>();
+            List<Fair> fairs = new List<Fair>
+            {
+                new Fair("Северная Ярмарка"),
+                new Fair("Южная Ярмарка"),
+                new Fair("Западная Ярмарка"),
+                new Fair("Восточная Ярмарка")
+            };
+
             List<Seller> sellers = new List<Seller>();
 
             while (isProgramWorking)
             {
                 Console.WriteLine("Выберите действие:");
-                Console.WriteLine($"{(int)MenuAction.AddFair} - Добавить новую ярмарку");
+                Console.WriteLine($"Просмотр списка ярмарк");
+                Console.WriteLine($"Просмотр списка продавцов");
                 Console.WriteLine($"{(int)MenuAction.AddSeller} - Добавить нового продавца");
                 Console.WriteLine($"{(int)MenuAction.RegisterSeller} - Зарегистрировать продавца на ярмарку");
                 Console.WriteLine($"{(int)MenuAction.RemoveSeller} - Снять продавца с ярмарки");
