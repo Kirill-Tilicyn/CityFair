@@ -43,29 +43,14 @@ namespace CityFair
             return true;
         }
 
-        public bool AddSellerToPointSale(Seller registeringSeller, string namePointSale)
+        public bool AddSellerToPointSale(Seller registeringSeller, PointSale namePointSale)
         {
-            if (registeringSeller == null)
+            if (registeringSeller == null || namePointSale == null)
             {
                 return false;
             }
 
-            PointSale activePointSale = null;
-
-            foreach (PointSale pointSale in _points)
-            {
-                if (pointSale.GetName() == namePointSale)
-                {
-                    activePointSale = pointSale;
-                }
-            }
-
-            if (activePointSale == null)
-            {
-                return false;
-            }
-
-            bool hasSellerAdded = activePointSale.AddSeller(registeringSeller);
+            bool hasSellerAdded = namePointSale.AddSeller(registeringSeller);
             return hasSellerAdded;
         }
     }

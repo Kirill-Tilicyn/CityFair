@@ -149,20 +149,26 @@ namespace CityFair
 
             foreach (Fair fair in fairs)
             {
-                if (fair == activeFair)
+                if (fair.GetName() == fairName)
                 {
                     activeFair = fair;
-                    return;
                 }
             }
 
             if (activeFair != null)
             {
-                Console.WriteLine($"Список торговых точек на ярмарке - {activeFair.GetName()}");
-
-                foreach (PointSale point in activeFair.GetPoints())
+                if (activeFair.GetPoints().Count >0)
                 {
-                    Console.WriteLine(point.GetName());
+                    Console.WriteLine($"Список торговых точек на ярмарке: ");
+
+                    foreach (PointSale point in activeFair.GetPoints())
+                    {
+                        Console.WriteLine(point.GetName());
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("На данной ярмарке нет торговых точек!");
                 }
             }
             else
@@ -179,10 +185,9 @@ namespace CityFair
 
             foreach (Fair fair in fairs)
             {
-                if (fair == activeFair)
+                if (fair.GetName() == fairName)
                 {
                     activeFair = fair;
-                    return;
                 }
             }
 
@@ -228,7 +233,7 @@ namespace CityFair
         {
             string nameSeller = RequestNameSeller();
 
-            if (string.IsNullOrEmpty(nameSeller))
+            if (!string.IsNullOrEmpty(nameSeller))
             {
                 sellers.Add(new Seller(nameSeller));
 
@@ -248,10 +253,9 @@ namespace CityFair
 
             foreach (Fair fair in fairs)
             {
-                if (fair == activeFair)
+                if (fair.GetName() == fairName)
                 {
                     activeFair = fair;
-                    return;
                 }
             }
 
@@ -261,14 +265,13 @@ namespace CityFair
 
                 PointSale activePoint = null;
 
-                if (string.IsNullOrEmpty(namePointSale))
+                if (!string.IsNullOrEmpty(namePointSale))
                 {
                     foreach (PointSale pointSale in activeFair.GetPoints())
                     {
                         if (pointSale.GetName() == namePointSale)
                         {
                             activePoint = pointSale;
-                            break;
                         }
                     }
 
@@ -278,7 +281,7 @@ namespace CityFair
 
                         Seller activeSeller = null;
 
-                        if (string.IsNullOrEmpty(nameSeller))
+                        if (!string.IsNullOrEmpty(nameSeller))
                         {
                             foreach (Seller seller in sellers)
                             {
@@ -290,7 +293,7 @@ namespace CityFair
 
                             if (activeSeller != null)
                             {
-                                bool hasActionCompleted = activePoint.AddSeller(activeSeller);
+                                bool hasActionCompleted = activeFair.AddSellerToPointSale(activeSeller, activePoint);
 
                                 if (hasActionCompleted)
                                 {
@@ -298,8 +301,12 @@ namespace CityFair
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Такого продавца не существует. Действие отменено!");
+                                    Console.WriteLine("На данной точке уже есть зарегистрированный продавец. Действие отменено!");
                                 }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Такого продавца нет! Действие отменено!");
                             }
                         }
                     }
@@ -323,10 +330,9 @@ namespace CityFair
 
             foreach (Fair fair in fairs)
             {
-                if (fair == activeFair)
+                if (fair.GetName() == fairName)
                 {
                     activeFair = fair;
-                    return;
                 }
             }
 
@@ -336,7 +342,7 @@ namespace CityFair
 
                 PointSale activePoint = null;
 
-                if (string.IsNullOrEmpty(namePointSale))
+                if (!string.IsNullOrEmpty(namePointSale))
                 {
                     foreach (PointSale pointSale in activeFair.GetPoints())
                     {
@@ -376,6 +382,7 @@ namespace CityFair
         {
             foreach (Fair fair in fairs)
             {
+                Console.WriteLine();
                 Console.WriteLine($"--- {fair.GetName()} ---");
 
                 if (fair.GetPoints().Count > 0)
@@ -383,8 +390,7 @@ namespace CityFair
                     foreach (PointSale pointSale in fair.GetPoints())
                     {
                         Console.WriteLine($"Торговая точка: {pointSale.GetName()}");
-
-                        pointSale.GetSeller()
+                        Console.WriteLine(pointSale.GetSeller());
                     }
                 }
                 else
@@ -404,7 +410,7 @@ namespace CityFair
 
         public static string RequestNamePointSale()
         {
-            Console.Write("Введите название ярмарки: ");
+            Console.Write("Введите название торговой точки: ");
             string name = Console.ReadLine()?.Trim();
 
             return name;
@@ -412,7 +418,7 @@ namespace CityFair
 
         public static string RequestNameSeller()
         {
-            Console.Write("Введите название ярмарки: ");
+            Console.Write("Введите имя продавца: ");
             string name = Console.ReadLine()?.Trim();
 
             return name;
